@@ -49,7 +49,7 @@ public class SeckillController {
 	@RequestMapping("/viewAll")
 	public ModelAndView viewAll(String name,String pwd){
 		ModelAndView mv = new ModelAndView();
-		System.out.println("������ viewAll ��������");
+		System.out.println("������ viewAll �����");
 		System.out.println("����:"+name);
 		System.out.println("����:"+pwd);
 		mv.setViewName("/success");
