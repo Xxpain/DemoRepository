@@ -26,35 +26,36 @@ import com.jp.exception.SeckillException;
 import com.jp.service.SeckillService;
 
 @Controller
-@RequestMapping("/seckill") //url:/Ä£¿é/×ÊÔ´/{id}/Ï¸·Ö  /seckill/list
+@RequestMapping("/seckill") //url:/Ä£ï¿½ï¿½/ï¿½ï¿½Ô´/{id}/Ï¸ï¿½ï¿½  /seckill/list
 public class SeckillController {
-	//ÈÕÖ¾µÄ¼ÓÔØ
+	//ï¿½ï¿½Ö¾ï¿½Ä¼ï¿½ï¿½ï¿½
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
 	@Autowired
 	private SeckillService seckillService;
 	/**
-	 * À¹½ØÆ÷
-	 * ½øÈëµÇÂ¼Ò³
+	 * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	 * ï¿½ï¿½ï¿½ï¿½ï¿½Â¼Ò³
 	 * @param name
 	 * @param pwd
 	 * @return
 	 */
 	@RequestMapping("/hello")
 	public String viewAll(Model model){
+		System.out.println(1);
 		return "/hello";
 	}
 	@RequestMapping("/viewAll")
 	public ModelAndView viewAll(String name,String pwd){
 		ModelAndView mv = new ModelAndView();
-		System.out.println("½øÈëÁË viewAll ¿ØÖÆÆ÷£¡");
-		System.out.println("ÐÕÃû:"+name);
-		System.out.println("ÃÜÂë:"+pwd);
+		System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ viewAll ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
+		System.out.println("ï¿½ï¿½ï¿½ï¿½:"+name);
+		System.out.println("ï¿½ï¿½ï¿½ï¿½:"+pwd);
 		mv.setViewName("/success");
-		mv.addObject("data","´ÓviewAll¿ØÖÆÆ÷´«¹ýÀ´µÄdata");
+		mv.addObject("data","ï¿½ï¿½viewAllï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½data");
 		return mv;
 	}
 	/**
-	 * »ñÈ¡ÁÐ±íÒ³ /seckill/list
+	 * ï¿½ï¿½È¡ï¿½Ð±ï¿½Ò³ /seckill/list
 	 * @param model
 	 * @return
 	 */
@@ -66,7 +67,7 @@ public class SeckillController {
 		return "/list";//list.jsp
 	}
 	/**
-	 * ÏêÇé
+	 * ï¿½ï¿½ï¿½ï¿½
 	 * seckill/5/detail
 	 * @param seckillId
 	 * @param model
@@ -75,20 +76,20 @@ public class SeckillController {
 	@RequestMapping(value="/{seckillId}/detail",method= RequestMethod.GET)
 	public String detail(@PathVariable("seckillId") Integer seckillId,Model model){
 		if(seckillId == null){
-			return "redirect:/seckill/list";//ÖØ¶¨Ïò
+			return "redirect:/seckill/list";//ï¿½Ø¶ï¿½ï¿½ï¿½
 		}
 		Seckill seckill = seckillService.getById(seckillId);
 		if(seckill==null){
-			return "forward:/seckill/list";//×ª·¢
+			return "forward:/seckill/list";//×ªï¿½ï¿½
 		}
 		model.addAttribute("seckill", seckill);
 		return "/detail";
 	}
 	
-	//ajax½Ó¿Ú  ·µ»ØÊÇjson  
-	//ÃëÉ±¿ªÆôÊ±ºò ¡£Êä³öÃëÉ±½Ó¿ÚµÄµØÖ· ·ñÔòÊä³öÏµÍ³Ê±¼äºÍÃëÉ±Ê±¼ä
+	//ajaxï¿½Ó¿ï¿½  ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½json  
+	//ï¿½ï¿½É±ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½É±ï¿½Ó¿ÚµÄµï¿½Ö· ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÏµÍ³Ê±ï¿½ï¿½ï¿½ï¿½ï¿½É±Ê±ï¿½ï¿½
 	@RequestMapping(value="{seckillId}/exposer",method=RequestMethod.POST,produces={"application/json;charset=UTF-8"})
-	@ResponseBody//¿´µ½Õâ¸ö×¢½â »á½«ÊµÌå·â×°³Éjson¸ñÊ½
+	@ResponseBody//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×¢ï¿½ï¿½ ï¿½á½«Êµï¿½ï¿½ï¿½×°ï¿½ï¿½jsonï¿½ï¿½Ê½
 	public SeckillResult<Exposer> exposer(@PathVariable("seckillId")Integer seckillId){
 		SeckillResult<Exposer> result ;
 		try {
@@ -104,7 +105,7 @@ public class SeckillController {
 	}
 	
 	/**
-	 * Ö´ÐÐÃëÉ±
+	 * Ö´ï¿½ï¿½ï¿½ï¿½É±
 	 * @param seckillId
 	 * @param md5
 	 * @param phone
@@ -118,26 +119,26 @@ method=RequestMethod.POST,produces={"application/json;charset=UTF-8"})
 			@CookieValue(value="killPhone",required=false) Long phone){
 		SeckillResult<SeckillExecution> result ;
 		if(phone==null){
-			return new SeckillResult<SeckillExecution>(false,"Î´×¢²á");
+			return new SeckillResult<SeckillExecution>(false,"Î´×¢ï¿½ï¿½");
 		}
 		try {
 			SeckillExecution execution = seckillService.executeSeckill(seckillId, phone, md5);
 			return new SeckillResult<SeckillExecution>(true,execution);
 
-		}catch (RepeatKillException e) {//ÖØ¸´ÃëÉ±Òì³£
+		}catch (RepeatKillException e) {//ï¿½Ø¸ï¿½ï¿½ï¿½É±ï¿½ì³£
 			SeckillExecution execution = new SeckillExecution(seckillId, SeckillStateEnum.REPEAT_KILL);
 			return new SeckillResult<SeckillExecution>(true,execution);
-		}catch (SeckillCloseException e) {//ÃëÉ±¹Ø±Õ ½áÊøÁËÒì³£
+		}catch (SeckillCloseException e) {//ï¿½ï¿½É±ï¿½Ø±ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ì³£
 			SeckillExecution execution = new SeckillExecution(seckillId, SeckillStateEnum.END);
 			return new SeckillResult<SeckillExecution>(true,execution);
-		}catch (SeckillException e) {//ÃëÉ±Í¨ÓÃÒì³£
+		}catch (SeckillException e) {//ï¿½ï¿½É±Í¨ï¿½ï¿½ï¿½ì³£
 			logger.error(e.getMessage());
 			SeckillExecution execution = new SeckillExecution(seckillId, SeckillStateEnum.INNER_ERROR);
 			return new SeckillResult<SeckillExecution>(true,execution);
 		}
 	}
 	/**
-	 * »ñÈ¡ÏµÍ³Ê±¼ä
+	 * ï¿½ï¿½È¡ÏµÍ³Ê±ï¿½ï¿½
 	 */
 	@RequestMapping(value="/time/now",method=RequestMethod.GET)
 	@ResponseBody
