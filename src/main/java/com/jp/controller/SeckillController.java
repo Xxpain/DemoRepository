@@ -41,7 +41,9 @@ public class SeckillController {
 	 */
 	@RequestMapping("/hello")
 	public String viewAll(Model model){
-		System.out.println(1);
+		System.out.println(2);
+		System.out.println(2);
+		System.out.println(2);
 		return "/hello";
 	}
 	@RequestMapping("/viewAll")
